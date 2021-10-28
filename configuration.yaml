@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: gitea
+  labels:
+    app: postgres
+data:
+  PGDATA: "/var/lib/postgresql/data"
+  POSTGRES_DB: "gitea"
+  POSTGRES_USER: "postgres"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gitea-env
+  namespace: gitea
+  labels:
+    app: gitea
+data:
+  APP_NAME: "Gitea"
+  USER_UID: "1000"
+  USER_GID: "1000"
+  ROOT_URL: "https://git.thejimnicholson.com"
+  HTTP_PORT: "3000"
+  DB_TYPE: postgres
+  DB_HOST: postgres.gitea.svc.cluster.local:5432
+  DB_NAME: gitea
+  DB_USER: postgres
