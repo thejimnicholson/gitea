@@ -34,6 +34,11 @@
           env:
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-secrets
+                  key: pg_username
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
