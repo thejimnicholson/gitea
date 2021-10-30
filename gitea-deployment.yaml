@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitea
+  namespace: gitea
+  labels:
+    app: gitea
+spec:
+  selector:
+    matchLabels:
+      app: gitea
+  strategy:
+    #type: Recreate
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: gitea
+    spec:
+      containers:
+      - image: gitea/gitea:1.15.5
+        name: gitea
+        envFrom:
+          - configMapRef:
+              name: gitea-env
+        env:
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: gitea-secrets
+                key: pg_username
+          - name: DB_PASSWD
+            valueFrom:
+              secretKeyRef:
+                name: gitea-secrets
+                key: pg_password
+        ports:
+        - containerPort: 3000
+          name: gitea
+        volumeMounts:
+        - name: gitea-persistent-storage
+          mountPath: /data
+      volumes:
+      - name: gitea-persistent-storage
+        persistentVolumeClaim:
+          claimName: gitea-pvc

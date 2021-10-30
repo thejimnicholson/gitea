@@ -15,6 +15,6 @@ resources:
 - storage.yaml
 - configuration.yaml
 - postgres-deployment.yaml
-# - deployment.yaml
+- gitea-deployment.yaml
 # - service.yaml
 # - ingress.yaml
