@@ -12,6 +12,8 @@
     accessModes:
       - ReadWriteOnce
     persistentVolumeReclaimPolicy: Retain
+    mountOptions:
+      - nolock
     nfs:
       server: 10.0.96.2
       path: "/volume1/storage/git-database"
@@ -32,6 +34,8 @@
     accessModes:
       - ReadWriteOnce
     persistentVolumeReclaimPolicy: Retain
+    mountOptions:
+      - nolock
     nfs:
       server: 10.0.96.2
       path: "/volume1/storage/git-repo"
