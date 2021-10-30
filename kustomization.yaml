@@ -18,5 +18,4 @@ resources:
 - postgres-service.yaml
 - gitea-deployment.yaml
 - gitea-service.yaml
-# - service.yaml
-# - ingress.yaml
+- ingress.yaml
