@@ -14,15 +14,3 @@
     selector:
       app: postgres
     clusterIP: None
----
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: gitea
-    namespace: gitea
-  spec:
-    selector:
-      app: gitea
-    ports:
-    - protocol: TCP
-      port: 3000
