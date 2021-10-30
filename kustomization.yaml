@@ -1,18 +1,22 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: gitea
-# secretGenerator:
-# - literals:
-#   - pg_password=some1pass5here9
-#   name: gitea-secrets
-# generatorOptions:
-#   disableNameSuffixHash: true
-#   labels:
-#     type: generated
+secretGenerator:
+- literals:
+  - pg_username=postgres
+  - pg_password=some1pass5here9
+  name: gitea-secrets
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    type: generated
 resources:
 - namespace.yaml
-- secrets.yaml
-- storage.yaml
+# - secrets.yaml
+- postgres-pv.yaml
+- postgres-pvc.yaml
+- gitea-pv.yaml
+- gitea-pvc.yaml
 - configuration.yaml
 - postgres-deployment.yaml
 - postgres-service.yaml
