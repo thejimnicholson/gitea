@@ -26,4 +26,4 @@ data:
   DB_TYPE: postgres
   DB_HOST: postgres.gitea.svc.cluster.local:5432
   DB_NAME: gitea
-  DB_USER: postgres
+
