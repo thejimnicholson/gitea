@@ -22,7 +22,7 @@ spec:
         app: gitea
     spec:
       containers:
-      - image: gitea/gitea:1.15.9
+      - image: gitea/gitea:1.16.0
         name: gitea
         envFrom:
           - configMapRef:
