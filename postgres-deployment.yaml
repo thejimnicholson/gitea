@@ -24,8 +24,9 @@
       spec:
         containers:
         - image: postgres:12
-          securityContext:
-            runAsUser: 1000
+#          command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]
+#          securityContext:
+#            runAsUser: 1000
           name: postgres
 #          command: ["chown", "-R", "1000:1000", "/var/lib/postgresql/data"]
           envFrom:
