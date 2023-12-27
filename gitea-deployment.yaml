@@ -42,14 +42,9 @@ spec:
         - containerPort: 3000
           name: gitea
         volumeMounts:
-        - name: gitea-persistent-storage
-          mountPath: /data
         - name: gitea-storage-nfs
-          mountPath: /data.new
+          mountPath: /data
       volumes:
-      - name: gitea-persistent-storage
-        persistentVolumeClaim:
-          claimName: gitea-pvc
       - name: gitea-storage-nfs
         persistentVolumeClaim:
           claimName: gitea-storage-nfs
