@@ -17,6 +17,7 @@ resources:
 - postgres-pvc.yaml
 - gitea-pv.yaml
 - gitea-pvc.yaml
+- 0x-storage.yaml
 - configuration.yaml
 - postgres-deployment.yaml
 - postgres-service.yaml
