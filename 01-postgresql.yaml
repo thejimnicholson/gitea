@@ -1,0 +1,28 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: gitea-db
+  namespace: gitea
+spec:
+  instances: 3
+  bootstrap:
+    initdb:
+      database: gitea-db    
+      import:
+        type: microservice
+        databases:
+          - gitea
+        source:
+          externalCluster: cluster-pg12 
+  storage:
+    storageClass: nfs-client
+    size: 5Gi
+  externalClusters:
+    - name: cluster-pg12
+      connectionParameters:
+        host: postgres.gitea.svc.cluster.local
+        user: postgres
+        dbname: gitea
+      password:
+        name: gitea-secrets
+        key: pg_password

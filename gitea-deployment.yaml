@@ -24,26 +24,34 @@ spec:
       containers:
       - image: gitea/gitea:1.21.10
         name: gitea
+        # command: ['sh','-c','echo "Container active" ; sleep 3600000']
         envFrom:
           - configMapRef:
               name: gitea-env
         env:
-          - name: DB_USER
+          - name: GITEA__database__USER
             valueFrom:
               secretKeyRef:
-                name: gitea-secrets
-                key: pg_username
-          - name: DB_PASSWD
+                name: gitea-db-app
+                key: user
+          - name: GITEA__database__PASSWD
             valueFrom:
               secretKeyRef:
-                name: gitea-secrets
-                key: pg_password
+                name: gitea-db-app
+                key: password
         ports:
         - containerPort: 3000
           name: gitea
         volumeMounts:
         - name: gitea-storage-nfs
           mountPath: /data
+        resources:
+          limits:
+            cpu: "2"
+            memory: "4Gi"
+          requests:
+            cpu: "1"
+            memory: "512Mi"
       volumes:
       - name: gitea-storage-nfs
         persistentVolumeClaim:
