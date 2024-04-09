@@ -15,4 +15,4 @@ data:
   GITEA__database__DB_TYPE: postgres
   GITEA__database__HOST: gitea-db-rw:5432
   GITEA__database__NAME: gitea-db
-
+  GITEA__actions__ENABLE: "true"
