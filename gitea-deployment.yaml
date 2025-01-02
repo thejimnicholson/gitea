@@ -22,7 +22,7 @@ spec:
         app: gitea
     spec:
       containers:
-      - image: gitea/gitea:1.21.10
+      - image: gitea/gitea:1.22.6
         name: gitea
         # command: ['sh','-c','echo "Container active" ; sleep 3600000']
         envFrom:
